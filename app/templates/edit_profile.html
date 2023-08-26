@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<form action="" method="POST">
+    {{ wtf.quick_form(form) }}
+</form>
+{% endblock %}
+
+{% block footer %} {{ super() }} {% endblock %}
+
+{% block scripts %} {{ super() }} {% endblock %}

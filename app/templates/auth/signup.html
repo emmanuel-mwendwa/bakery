@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Log In {% endblock %}
+
+{% block scripts %} 
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<form action="" method="POST">
+
+    <div class="company-logo-div">
+        <img class="company-logo" src="../../static/images/Kwa_Mkamba_Bakery_Sample_Logo.png" alt="Company Logo">
+    </div>
+
+    {{ profile_form.hidden_tag() }}
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        {{ profile_form.name.label }}
+        {{ profile_form.name() }}
+    </div>
+    <div class="form-group">
+        {{ profile_form.phone_no.label }}
+        {{ profile_form.phone_no() }}
+    </div>
+    <div class="form-group">
+        {{ form.email.label }}
+        {{ form.email() }}
+    </div>
+    <div class="form-group">
+        {{ form.username.label }}
+        {{ form.username() }}
+    </div>
+    <div class="form-group">
+        {{ form.password.label }}
+        {{ form.password() }}
+    </div>
+    <div class="form-group">
+        {{ form.password2.label }}
+        {{ form.password2() }}
+    </div>
+    <div class="form-group">
+        {{ form.submit() }}
+    </div>
+</form>
+
+{% endblock %}

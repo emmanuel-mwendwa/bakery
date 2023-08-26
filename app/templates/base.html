@@ -1,0 +1,98 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mkamba - {% block title %} {% endblock %}</title>
+
+    {% block styles %}
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    {% endblock %}
+  </head>
+  <body>
+    {% block header %}
+
+    <header class="settings-side-form__header--details">
+      <nav class="settings-side-form__navigation--details">
+        <!-- a header with the users profile pic or initials and a notifications bell and pie chart for graphs -->
+        <div class="settings-side-form__items--details">
+          <button class="dropbtn" id="dropbtn"
+          onclick="document.getElementsByClassName('dropdown-content').style.display = 'block' "
+          >
+            <img src="../static/images/" alt="Initials" />
+          </button>
+          <div class="dropdown-content">
+            {% if current_user.is_authenticated %}
+              <a
+                href="{{ url_for('main.user', username=current_user.username)}}"
+                >Profile</a
+              >
+              <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+              <a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <br /><br />
+
+    {% endblock %} {% block content %}
+
+    <main>
+      <!-- display error or success messages  -->
+      <section class="flashed-messages__section--pop-up">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        "error" %}
+        <div class="flashed-messages__div--error">{{ message}}</div>
+        {% else %}
+        <div class="flashed-messages__div--success">{{ message}}</div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+      </section>
+
+      <section class=""></section>
+    </main>
+
+    {% endblock%} {% block footer %}
+
+    <br /><br />
+
+    <footer class="main-navigation-bar__footer--details">
+      <nav class="main-navigation-bar__nav--details">
+        <ul class="main-navigation-bar__unordered-list--details">
+          <li>
+            <a href="{{ url_for('main.index') }}"> <i></i>Home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('production.production_home')}}">
+              <i></i>Production</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('sales.sales_page')}}"> <i></i>Sales</a>
+          </li>
+          <li>
+            <a href="#"> <i></i>Expenses</a>
+          </li>
+          <li>
+            <a href="#"> <i></i>Staff</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    {% endblock %} {% block scripts %} 
+    {{ moment.include_moment() }} 
+    
+    {% endblock%}
+  </body>
+</html>

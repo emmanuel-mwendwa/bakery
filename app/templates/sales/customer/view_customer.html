@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} {{ customer.name }} {% endblock %}
+
+{% block styles %} {{ super() }} {% endblock %}
+
+{% block header %} {{ super() }} {% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<label for="">Customer Name: </label> <span>{{ customer.cust_name }} </span>
+<br>
+<label for="">Customer Email: </label> <span>{{ customer.cust_email }} </span>
+<br>
+<label for="">Customer Phone No: </label> <span>{{ customer.cust_phone_no }} </span>
+<br>
+<label for="">M-Pesa Agent: </label> <span> {{ customer.cust_mpesa_agent_name }} </span>
+<br>
+<label for="">Route: </label> <span> {{ customer.cust_route.route_name }} </span>
+<br>
+
+
+<button><a href="{{ url_for('sales.update_customer', id=customer.cust_id) }}">Update</a></button>
+<button><a href="{{ url_for('sales.delete_customer', id=customer.cust_id) }}">Delete</a></button>
+
+{% endblock %}
+
+{% block footer %} {{ super() }} {% endblock %}
+
+{% block scripts %} {{ super() }} {% endblock %}
